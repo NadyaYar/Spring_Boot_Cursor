@@ -13,14 +13,18 @@ import java.util.List;
 @RestController
 public class UUIDController {
 
-    @Autowired
-    private UUIDService uuidService;
+    private final UUIDService uuidService;
 
-    @GetMapping("/uuids")
-    public List<UUID> uuids(@RequestParam("number") int number) {
+    @Autowired
+    public UUIDController(UUIDService uuidService) {
+        this.uuidService = uuidService;
+    }
+
+    @GetMapping("/uuid")
+    public List<UUID> getUuidList(@RequestParam("number") int size) {
         List<UUID> uuids = new ArrayList<>();
-        for (int i = 0; i < number; i++) {
-            uuids.add(uuidService.getUUIDs());
+        for (int i = 0; i < size; i++) {
+            uuids.add(uuidService.getUUID());
         }
         return uuids;
     }
