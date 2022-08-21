@@ -1,6 +1,5 @@
 package com.example.demo.UUID;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,9 @@ public class UUIDController {
         this.uuidService = uuidService;
     }
 
-    @GetMapping("/uuid")
-    public List<UUID> getUuidList(@RequestParam("number") int size) {
-        List<UUID> uuids = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            uuids.add(uuidService.getUUID());
-        }
-        return uuids;
+    @GetMapping("/uuids")
+    public List<UUID> getUuidsList(@RequestParam("number") int size) {
+        return uuidService.getUUIDs(size);
     }
 }
 
